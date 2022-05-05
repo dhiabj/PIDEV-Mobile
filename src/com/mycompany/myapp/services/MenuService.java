@@ -45,31 +45,19 @@ public class MenuService {
         try {
             menus=new ArrayList<>();
             JSONParser j = new JSONParser();
-            Map<String,Object> tasksListJson = 
+            Map<String,Object> menusListJson = 
                j.parseJSON(new CharArrayReader(jsonText.toCharArray()));
             
-            List<Map<String,Object>> list = (List<Map<String,Object>>)tasksListJson.get("root");
+            List<Map<String,Object>> list = (List<Map<String,Object>>)menusListJson.get("root");
             for(Map<String,Object> obj : list){
                 Menu m = new Menu();
                 float id = Float.parseFloat(obj.get("id").toString());
                 m.setId((int)id);
+                m.setTitre(obj.get("titre").toString());
+                m.setDescription(obj.get("description").toString());
                 m.setPrix((Float.parseFloat(obj.get("prix").toString())));
-                if (obj.get("titre")==null)
-                    m.setTitre("null");
-                else
-                    m.setTitre(obj.get("titre").toString());
-                if (obj.get("description")==null)
-                    m.setDescription("null");
-                else
-                    m.setDescription(obj.get("description").toString());
-                if (obj.get("categorie")==null)
-                    m.setCategorie("null");
-                else
-                    m.setCategorie(obj.get("categorie").toString());
-                if (obj.get("image")==null)
-                    m.setImage("null");
-                else
-                    m.setImage(obj.get("image").toString());
+                m.setCategorie(obj.get("categorie").toString());
+                m.setImage(obj.get("image").toString());
                 menus.add(m);
             }
             
@@ -82,7 +70,7 @@ public class MenuService {
     
     public ArrayList<Menu> getAllMenus(){
         req=new ConnectionRequest();
-        String url = Statics.BASE_URL+"/api/menu/afficher";
+        String url = Statics.BASE_URL+"/showMenusJSON";
         req.setUrl(url);
         req.setPost(false);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
