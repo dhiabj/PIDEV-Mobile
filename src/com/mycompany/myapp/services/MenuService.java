@@ -41,6 +41,31 @@ public class MenuService {
         return instance;
     }
     
+    public boolean addMenu(Menu m) {
+        System.out.println(m);
+        System.out.println("********");
+       String url = Statics.BASE_URL + "/addMenuJSON/new?titre=" + m.getTitre() + "&description=" + m.getDescription()
+               + "&prix=" + m.getPrix() + "&categorie=" + m.getCategorie();
+       //String url = Statics.BASE_URL + "create";
+    
+       req.setUrl(url);
+       req.setPost(false);
+        System.out.println(url);
+       req.addArgument("titre", m.getTitre());
+       req.addArgument("description", m.getDescription());
+       req.addArgument("prix", m.getPrix()+"");
+       req.addArgument("categorie", m.getCategorie());
+       req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = req.getResponseCode() == 200; //Code HTTP 200 OK
+                req.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return resultOK;
+    }
+    
     public ArrayList<Menu> parseMenus(String jsonText){
         try {
             menus=new ArrayList<>();
@@ -57,7 +82,10 @@ public class MenuService {
                 m.setDescription(obj.get("description").toString());
                 m.setPrix((Float.parseFloat(obj.get("prix").toString())));
                 m.setCategorie(obj.get("categorie").toString());
-                m.setImage(obj.get("image").toString());
+                if (obj.get("image")==null)
+                    m.setImage("null");
+                else
+                    m.setImage(obj.get("image").toString());
                 menus.add(m);
             }
             

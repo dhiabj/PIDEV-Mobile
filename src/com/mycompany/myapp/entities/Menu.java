@@ -26,6 +26,15 @@ public class Menu {
         this.image = image;
     }
 
+    public Menu(String titre, String description, float prix, String categorie) {
+        this.titre = titre;
+        this.description = description;
+        this.prix = prix;
+        this.categorie = categorie;
+    }
+    
+    
+
     public Menu() {
         
     }
