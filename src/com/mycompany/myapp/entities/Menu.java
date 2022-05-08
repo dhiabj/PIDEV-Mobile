@@ -32,9 +32,23 @@ public class Menu {
         this.prix = prix;
         this.categorie = categorie;
     }
-    
-    
 
+    public Menu(int id, String titre, String description, float prix, String categorie) {
+        this.id = id;
+        this.titre = titre;
+        this.description = description;
+        this.prix = prix;
+        this.categorie = categorie;
+    }
+
+    public Menu(String titre, String description, float prix, String categorie, String image) {
+        this.titre = titre;
+        this.description = description;
+        this.prix = prix;
+        this.categorie = categorie;
+        this.image = image;
+    }
+    
     public Menu() {
         
     }

@@ -27,7 +27,7 @@ public class MenuService {
     public ArrayList<Menu> menus;
     
     public static MenuService instance=null;
-    public boolean resultOK;
+    public static boolean resultOK;
     private ConnectionRequest req;
 
     private MenuService() {
@@ -45,7 +45,7 @@ public class MenuService {
         System.out.println(m);
         System.out.println("********");
        String url = Statics.BASE_URL + "/addMenuJSON/new?titre=" + m.getTitre() + "&description=" + m.getDescription()
-               + "&prix=" + m.getPrix() + "&categorie=" + m.getCategorie();
+               + "&prix=" + m.getPrix() + "&categorie=" + m.getCategorie() + "&image=" + m.getImage();
        //String url = Statics.BASE_URL + "create";
     
        req.setUrl(url);
@@ -55,6 +55,27 @@ public class MenuService {
        req.addArgument("description", m.getDescription());
        req.addArgument("prix", m.getPrix()+"");
        req.addArgument("categorie", m.getCategorie());
+       req.addArgument("image", m.getImage());
+       req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = req.getResponseCode() == 200; //Code HTTP 200 OK
+                req.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return resultOK;
+    }
+    
+    public boolean updateMenu(Menu m) {
+        System.out.println(m);
+        System.out.println("********");
+       String url = Statics.BASE_URL + "/updateMenuJSON/"+m.getId()+"?titre=" + m.getTitre() + "&description=" + m.getDescription()
+               + "&prix=" + m.getPrix() + "&categorie=" + m.getCategorie() + "&image=" + m.getImage();
+       //String url = Statics.BASE_URL + "create";
+    
+       req.setUrl(url);
+       
        req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
@@ -110,6 +131,22 @@ public class MenuService {
         });
         NetworkManager.getInstance().addToQueueAndWait(req);
         return menus;
+    }
+    
+    public boolean deleteMenu(int id) {
+       String url = Statics.BASE_URL + "/deleteMenuJSON/"+id;
+    
+       req.setUrl(url);
+
+       req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = req.getResponseCode() == 200; //Code HTTP 200 OK
+                req.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return resultOK;
     }
     
 }

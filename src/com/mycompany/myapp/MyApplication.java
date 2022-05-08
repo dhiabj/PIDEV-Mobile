@@ -53,7 +53,7 @@ public class MyApplication {
             current.show();
             return;
         }
-        new AdminForm().show();
+        new AdminForm(theme).show();
     }
 
     public void stop() {
