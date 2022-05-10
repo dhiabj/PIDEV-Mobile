@@ -25,6 +25,12 @@ public class Favoris {
         this.user_id = user_id;
     }
 
+    public Favoris(int user_id) {
+        this.user_id = user_id;
+    }
+    
+    
+
     public int getId() {
         return id;
     }

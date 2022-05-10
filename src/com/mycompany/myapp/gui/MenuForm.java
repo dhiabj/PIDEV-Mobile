@@ -80,11 +80,12 @@ public class MenuForm extends BaseForm {
         installSidemenu(resourceObjectInstance);
         
         getToolbar().addMaterialCommandToRightBar("", FontImage.MATERIAL_FAVORITE, e -> {
-            System.out.println("favoris");
+            
+            new FavoritesForm(resourceObjectInstance).show();
         });
-        getToolbar().addMaterialCommandToRightBar("", FontImage.MATERIAL_SHOPPING_CART, e -> {
-            System.out.println("panier");
-        });
+//        getToolbar().addMaterialCommandToRightBar("", FontImage.MATERIAL_SHOPPING_CART, e -> {
+//            System.out.println("panier");
+//        });
         
     }
     
@@ -103,8 +104,9 @@ public class MenuForm extends BaseForm {
         lbFavorite.setUIID ("NewsTopLine");
         Style favoriteStyle = new Style (lbFavorite.getUnselectedStyle());
         favoriteStyle.setFgColor(0xf21f1f);
-        FontImage favoriteImage = FontImage.createMaterial (FontImage. MATERIAL_FAVORITE, favoriteStyle); 
-        lbFavorite.setIcon (favoriteImage);
+        FontImage favoriteImage = FontImage.createMaterial(FontImage.MATERIAL_FAVORITE_BORDER, favoriteStyle);
+        FontImage favoriteImageFull = FontImage.createMaterial(FontImage.MATERIAL_FAVORITE, favoriteStyle);
+        lbFavorite.setIcon(favoriteImage);
         lbFavorite.setTextPosition (RIGHT);
         
         
@@ -114,6 +116,7 @@ public class MenuForm extends BaseForm {
                         if( FavorisService.getInstance().addFavorite(f))
                         {
                            Dialog.show("Success","Menu ajouté a votre liste de favoris!",new Command("OK"));
+                           lbFavorite.setIcon(favoriteImageFull);
                         }else
                             Dialog.show("ERROR", "Server error", new Command("OK"));
         });
@@ -144,7 +147,7 @@ public class MenuForm extends BaseForm {
 // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initGuiBuilderComponents(com.codename1.ui.util.Resources resourceObjectInstance) {
         setLayout(new com.codename1.ui.layouts.BoxLayout(com.codename1.ui.layouts.BoxLayout.Y_AXIS));
-        setTitle("Menu");
+        setTitle("Menus");
         setName("MenuForm");
     }// </editor-fold>
 
