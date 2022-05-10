@@ -42,6 +42,7 @@ public class AddMenuForm extends Form{
         TextField tfTitre = new TextField("","Titre");
         TextField tfDescription= new TextField("", "Description");
         TextField tfPrix= new TextField("", "Prix");
+        TextField tfIngredients= new TextField("", "Ingredients");
         Container cnt=new Container(BoxLayout.x());
         Label lbCategorie=new Label();
         Label lb=new Label("Vegan :");
@@ -86,7 +87,7 @@ public class AddMenuForm extends Form{
         btnValider.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                if ((tfTitre.getText().length()==0)||(tfDescription.getText().length()==0) ||(tfPrix.getText().length()==0) ||(lbImage.getText().length()==0))
+                if ((tfTitre.getText().length()==0)||(tfDescription.getText().length()==0) ||(tfPrix.getText().length()==0) ||(tfIngredients.getText().length()==0) ||(lbImage.getText().length()==0))
                     Dialog.show("Alert", "Veuillez remplir tous les champs", new Command("OK"));
                 else
                 {
@@ -97,7 +98,7 @@ public class AddMenuForm extends Form{
                             lbCategorie.setText("Normal");
                         }
                         Menu m = new Menu(tfTitre.getText(), 
-                                tfDescription.getText(), Float.parseFloat(tfPrix.getText()), lbCategorie.getText(), lbImage.getText());
+                                tfDescription.getText(), Float.parseFloat(tfPrix.getText()), tfIngredients.getText(), lbCategorie.getText(), lbImage.getText());
                         if( MenuService.getInstance().addMenu(m))
                         {
                            Dialog.show("Success","Menu ajouté avec succès!",new Command("OK"));
@@ -114,7 +115,7 @@ public class AddMenuForm extends Form{
             }
         });
         
-        addAll(tfTitre,tfDescription,tfPrix,btCapture);
+        addAll(tfTitre,tfDescription,tfPrix,tfIngredients,btCapture);
         addAll(cnt,btnValider);
         getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e-> previous.showBack());
                 

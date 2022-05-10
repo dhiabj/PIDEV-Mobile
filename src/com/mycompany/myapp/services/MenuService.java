@@ -45,7 +45,7 @@ public class MenuService {
         System.out.println(m);
         System.out.println("********");
        String url = Statics.BASE_URL + "/addMenuJSON/new?titre=" + m.getTitre() + "&description=" + m.getDescription()
-               + "&prix=" + m.getPrix() + "&categorie=" + m.getCategorie() + "&image=" + m.getImage();
+               + "&prix=" + m.getPrix() + "&ingredients=" + m.getIngredients() + "&categorie=" + m.getCategorie() + "&image=" + m.getImage();
        //String url = Statics.BASE_URL + "create";
     
        req.setUrl(url);
@@ -54,6 +54,7 @@ public class MenuService {
        req.addArgument("titre", m.getTitre());
        req.addArgument("description", m.getDescription());
        req.addArgument("prix", m.getPrix()+"");
+       req.addArgument("ingredients", m.getIngredients());
        req.addArgument("categorie", m.getCategorie());
        req.addArgument("image", m.getImage());
        req.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -71,7 +72,7 @@ public class MenuService {
         System.out.println(m);
         System.out.println("********");
        String url = Statics.BASE_URL + "/updateMenuJSON/"+m.getId()+"?titre=" + m.getTitre() + "&description=" + m.getDescription()
-               + "&prix=" + m.getPrix() + "&categorie=" + m.getCategorie() + "&image=" + m.getImage();
+               + "&prix=" + m.getPrix() + "&ingredients=" + m.getIngredients() + "&categorie=" + m.getCategorie() + "&image=" + m.getImage();
        //String url = Statics.BASE_URL + "create";
     
        req.setUrl(url);
@@ -102,6 +103,7 @@ public class MenuService {
                 m.setTitre(obj.get("titre").toString());
                 m.setDescription(obj.get("description").toString());
                 m.setPrix((Float.parseFloat(obj.get("prix").toString())));
+                m.setIngredients(obj.get("ingredients").toString());
                 m.setCategorie(obj.get("categorie").toString());
                 if (obj.get("image")==null)
                     m.setImage("null");

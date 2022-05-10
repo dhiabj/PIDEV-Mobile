@@ -64,6 +64,7 @@ public class FavoritesForm extends Form {
         Label lbTitre = new Label("Titre : "+m.getTitre(),"NewsTopLine2");
         Label lbDescription = new Label("Description : "+m.getDescription(),"NewsTopLine2");
         Label lbPrix = new Label("Prix : "+m.getPrix(),"NewsTopLine2");
+        Label lbIngredients = new Label("Ingrédients : "+m.getIngredients(),"NewsTopLine2");
         Label lbCategorie = new Label("Catégorie : "+m.getCategorie(),"NewsTopLine2");
        
         Label lbDelete = new Label(" ");
@@ -91,7 +92,7 @@ public class FavoritesForm extends Form {
             }
         });
         
-        cnt.add(BorderLayout.CENTER, BoxLayout.encloseY(BoxLayout.encloseX(lbTitre, lbDelete), BoxLayout.encloseX(lbDescription), BoxLayout.encloseX(lbPrix) , BoxLayout.encloseX(lbCategorie)));
+        cnt.add(BorderLayout.CENTER, BoxLayout.encloseY(BoxLayout.encloseX(lbTitre, lbDelete), BoxLayout.encloseX(lbDescription), BoxLayout.encloseX(lbPrix) ,BoxLayout.encloseX(lbIngredients) , BoxLayout.encloseX(lbCategorie)));
         add(cnt);
     }
 

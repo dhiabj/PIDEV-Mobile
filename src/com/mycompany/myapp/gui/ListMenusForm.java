@@ -59,6 +59,7 @@ public class ListMenusForm extends Form {
         Container cnt = BorderLayout.north(imgV);
         Label lbTitre = new Label("Titre : "+m.getTitre(),"NewsTopLine2");
         Label lbDescription = new Label("Description : "+m.getDescription(),"NewsTopLine2");
+        Label lbIngredients = new Label("Ingrédients : "+m.getIngredients(),"NewsTopLine2");
         Label lbPrix = new Label("Prix : "+m.getPrix(),"NewsTopLine2");
         Label lbCategorie = new Label("Catégorie : "+m.getCategorie(),"NewsTopLine2");
        
@@ -98,7 +99,7 @@ public class ListMenusForm extends Form {
             new UpdateMenuForm(previous, res, m).show();
         });
         
-        cnt.add(BorderLayout.CENTER, BoxLayout.encloseY(BoxLayout.encloseX(lbTitre, lbDelete, lbUpdate), BoxLayout.encloseX(lbDescription), BoxLayout.encloseX(lbPrix) , BoxLayout.encloseX(lbCategorie)));
+        cnt.add(BorderLayout.CENTER, BoxLayout.encloseY(BoxLayout.encloseX(lbTitre, lbDelete, lbUpdate), BoxLayout.encloseX(lbDescription), BoxLayout.encloseX(lbPrix) , BoxLayout.encloseX(lbIngredients) , BoxLayout.encloseX(lbCategorie)));
         add(cnt);
     }
 

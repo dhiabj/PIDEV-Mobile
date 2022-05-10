@@ -97,6 +97,7 @@ public class MenuForm extends BaseForm {
         Label lbTitre = new Label("Titre : "+m.getTitre(),"NewsTopLine2");
         Label lbDescription = new Label("Description : "+m.getDescription(),"NewsTopLine2");
         Label lbPrix = new Label("Prix : "+m.getPrix(),"NewsTopLine2");
+        Label lbIngredients = new Label("Ingrédients : "+m.getIngredients(),"NewsTopLine2");
         Label lbCategorie = new Label("Catégorie : "+m.getCategorie(),"NewsTopLine2");
         Button btnAddMenu = new Button("Ajouter au panier");
         
@@ -121,7 +122,7 @@ public class MenuForm extends BaseForm {
                             Dialog.show("ERROR", "Server error", new Command("OK"));
         });
       
-        cnt.add(BorderLayout.CENTER, BoxLayout.encloseY(BoxLayout.encloseX(lbTitre,lbFavorite), BoxLayout.encloseX(lbDescription), BoxLayout.encloseX(lbPrix) , BoxLayout.encloseX(lbCategorie), BoxLayout.encloseY(btnAddMenu)));
+        cnt.add(BorderLayout.CENTER, BoxLayout.encloseY(BoxLayout.encloseX(lbTitre,lbFavorite), BoxLayout.encloseX(lbDescription), BoxLayout.encloseX(lbPrix) ,BoxLayout.encloseX(lbIngredients) , BoxLayout.encloseX(lbCategorie), BoxLayout.encloseY(btnAddMenu)));
         add(cnt);
     }
 

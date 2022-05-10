@@ -14,37 +14,42 @@ public class Menu {
     private String titre;
     private String description;
     private float prix;
+    private String ingredients;
     private String categorie;
     private String image;
 
-    public Menu(int id, String titre, String description, float prix, String categorie, String image) {
+    public Menu(int id, String titre, String description, float prix, String ingredients, String categorie, String image) {
         this.id = id;
         this.titre = titre;
         this.description = description;
         this.prix = prix;
+        this.ingredients = ingredients;
         this.categorie = categorie;
         this.image = image;
     }
 
-    public Menu(String titre, String description, float prix, String categorie) {
+    public Menu(String titre, String description, float prix, String ingredients, String categorie) {
         this.titre = titre;
         this.description = description;
         this.prix = prix;
+        this.ingredients = ingredients;
         this.categorie = categorie;
     }
 
-    public Menu(int id, String titre, String description, float prix, String categorie) {
+    public Menu(int id, String titre, String description, float prix, String ingredients, String categorie) {
         this.id = id;
         this.titre = titre;
         this.description = description;
         this.prix = prix;
+        this.ingredients = ingredients;
         this.categorie = categorie;
     }
 
-    public Menu(String titre, String description, float prix, String categorie, String image) {
+    public Menu(String titre, String description, float prix, String ingredients, String categorie, String image) {
         this.titre = titre;
         this.description = description;
         this.prix = prix;
+        this.ingredients = ingredients;
         this.categorie = categorie;
         this.image = image;
     }
@@ -85,6 +90,14 @@ public class Menu {
         this.prix = prix;
     }
 
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
+    
     public String getCategorie() {
         return categorie;
     }
@@ -103,9 +116,7 @@ public class Menu {
 
     @Override
     public String toString() {
-        return "Menu{" + "id=" + id + ", titre=" + titre + ", description=" + description + ", prix=" + prix + ", categorie=" + categorie + ", image=" + image + '}';
+        return "Menu{" + "id=" + id + ", titre=" + titre + ", description=" + description + ", prix=" + prix + ", ingredients=" + ingredients + ", categorie=" + categorie + ", image=" + image + '}';
     }
-    
-    
     
 }

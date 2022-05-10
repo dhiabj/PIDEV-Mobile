@@ -78,6 +78,7 @@ public class FavorisService {
                 m.setTitre(obj.get("titre").toString());
                 m.setDescription(obj.get("description").toString());
                 m.setPrix((Float.parseFloat(obj.get("prix").toString())));
+                m.setIngredients(obj.get("ingredients").toString());
                 m.setCategorie(obj.get("categorie").toString());
                 if (obj.get("image")==null)
                     m.setImage("null");
